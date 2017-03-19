@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.foxfinity.merlin.search.SearchActivity">
+
+    <com.foxfinity.merlin.views.MerlinAutofitTextView
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_centerHorizontal="true"
+        android:gravity="bottom|center_horizontal"
+        android:text="merlin"
+        android:textSize="36sp"
+        android:transitionName="title" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/titleBar"
+        android:background="#adadad"
+        android:transitionName="divider" />
+
+    <com.foxfinity.merlin.views.MerlinEditText
+        android:id="@+id/queryField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#00000000"
+        android:hint="Enter word or expression"
+        android:inputType="textPersonName"
+        android:maxLines="1"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:textCursorDrawable="@drawable/login_fields_cursor"
+        android:transitionName="input" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/queryField"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp" />
+
+    <ImageView
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/queryField"
+        android:layout_alignTop="@+id/queryField"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/ic_close_black_24dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/wordList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:overScrollMode="never" />
+
+</RelativeLayout>

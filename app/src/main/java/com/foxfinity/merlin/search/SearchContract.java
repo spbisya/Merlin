@@ -1,7 +1,9 @@
 package com.foxfinity.merlin.search;
 
-import com.foxfinity.merlin.BasePresenter;
-import com.foxfinity.merlin.BaseView;
+import android.text.Editable;
+
+import com.foxfinity.merlin.base.IPresenter;
+import com.foxfinity.merlin.base.IView;
 import com.foxfinity.merlin.models.Word;
 
 import java.util.List;
@@ -12,16 +14,17 @@ import java.util.List;
  */
 
 public interface SearchContract {
-    interface View extends BaseView<Presenter> {
+    interface ISearchView extends IView<ISearchPresenter> {
         void showWords(List<Word> words);
 
         void showNoWords();
 
         void showNetworkProblemToast();
-
     }
 
-    interface Presenter extends BasePresenter {
+    interface ISearchPresenter extends IPresenter<ISearchView>{
         void searchExpression(String expression);
+
+        void checkEnteredSymbols(Editable s);
     }
 }

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/aboutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <com.foxfinity.merlin.views.MerlinTextView
+            android:id="@+id/aboutTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/close"
+            android:maxLines="1"
+            android:text="About"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/aboutTitle"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/aboutTitle"
+            android:onClick="openScreen"
+            app:srcCompat="@drawable/ic_close_black_24dp" />
+
+        <com.foxfinity.merlin.views.MerlinTextView
+            android:id="@+id/aboutText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aboutTitle"
+            android:paddingTop="20dp"
+            android:text="@string/about"
+            android:textSize="17sp" />
+
+        <com.foxfinity.merlin.views.MerlinTextView
+            android:id="@+id/visit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/aboutText"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/states"
+            android:textColor="@drawable/color_states"
+            android:paddingBottom="5dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:text="Visit our site"
+            android:textSize="18sp" />
+
+        <com.foxfinity.merlin.views.MerlinTextView
+            android:id="@+id/write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/aboutText"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/visit"
+            android:background="@drawable/states"
+            android:paddingBottom="5dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:text="Write us"
+            android:textColor="@drawable/color_states"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/change"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/aboutContainer"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/logo" />
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:background="@drawable/button_bg"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:text="Change theme"
+        android:textColor="#0072ff"
+        android:textSize="18sp" />
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_toEndOf="@+id/change"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:text="Help"
+        android:background="@drawable/states"
+        android:textColor="@drawable/color_states"
+        android:textSize="18sp" />
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/help"
+        android:background="@drawable/tv_bg_pressed"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:clickable="false"
+        android:text="About"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/dim_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.45"
+        android:background="#000000"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/themeContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/change"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/layout_bg"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/white"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="#FFFFFF"
+            android:scaleType="fitXY"
+            android:src="@drawable/won" />
+
+        <ImageView
+            android:id="@+id/black"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="#FFFFFF"
+            android:layout_marginStart="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/boff" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

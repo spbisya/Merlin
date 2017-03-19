@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <com.foxfinity.merlin.views.MerlinAutofitTextView
+            android:id="@+id/appname"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="bottom|center_horizontal"
+            android:maxLines="1"
+            android:text="merlin"
+            android:textSize="100sp"
+            android:transitionName="title" />
+
+        <com.foxfinity.merlin.views.MerlinAutofitTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/appname"
+            android:gravity="center_horizontal"
+            android:maxLines="1"
+            android:text="What word are you looking for?"
+            android:textSize="40sp"
+            android:transitionName="divider" />
+
+        <com.foxfinity.merlin.views.MerlinEditText
+            android:id="@+id/word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/title"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingBottom="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="For example, wizard"
+            android:textColor="#adadad"
+            android:textCursorDrawable="@drawable/login_fields_cursor"
+            android:transitionName="input"
+            app:typeface="1" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/word" />
+
+        <View
+            android:id="@+id/cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/word"
+            android:layout_below="@+id/title"
+            android:background="#00000000"
+            android:clickable="true" />
+
+    </RelativeLayout>
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/button_bg"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:text="Change theme"
+        android:textColor="#0072ff"
+        android:textSize="18sp" />
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_toEndOf="@+id/change"
+        android:background="@drawable/states"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:text="Help"
+        android:textColor="@drawable/color_states"
+        android:textSize="18sp" />
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/help"
+        android:background="@drawable/states"
+        android:paddingBottom="5dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:text="About"
+        android:textColor="@drawable/color_states"
+        android:textSize="18sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/dim_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.45"
+        android:background="#000000"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/themeContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/change"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/layout_bg"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/white"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="#FFFFFF"
+            android:scaleType="fitXY"
+            android:src="@drawable/won" />
+
+        <ImageView
+            android:id="@+id/black"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="10dp"
+            android:background="#FFFFFF"
+            android:scaleType="fitXY"
+            android:src="@drawable/boff" />
+
+    </LinearLayout>
+
+</RelativeLayout>

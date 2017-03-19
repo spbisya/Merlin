@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.foxfinity.merlin.views.MerlinAutofitTextView
+        android:id="@+id/titleBarDef"
+        android:layout_width="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:gravity="bottom|center_horizontal"
+        android:text="merlin"
+        android:textSize="36sp" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="wrap_content"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:scaleType="center"
+        app:srcCompat="@drawable/ic_close_black_24dp" />
+
+    <View
+        android:id="@+id/lineDef"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/titleBarDef"
+        android:background="#adadad" />
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/theDef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lineDef"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+        android:gravity="start"
+        android:maxLines="1"
+        android:text="The definition of the word"
+        android:textSize="20sp" />
+
+    <com.foxfinity.merlin.views.MerlinAutofitTextView
+        android:id="@+id/wordView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/theDef"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:gravity="start|top"
+        android:maxLines="1"
+        android:text="word"
+        android:textSize="100sp" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/wordView"
+        android:layout_marginLeft="40dp"
+        android:overScrollMode="never"
+        android:layout_marginRight="40dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/definitions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wordView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:indeterminateOnly="true"/>
+
+</RelativeLayout>

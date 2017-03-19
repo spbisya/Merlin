@@ -1,20 +1,27 @@
 package com.foxfinity.merlin.search;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.foxfinity.merlin.R;
 import com.foxfinity.merlin.adapters.WordAdapter;
 import com.foxfinity.merlin.models.Word;
+import com.foxfinity.merlin.utils.HelperPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,29 +31,42 @@ import butterknife.ButterKnife;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
-public class SearchActivity extends AppCompatActivity implements SearchContract.View {
+public class SearchActivity extends AppCompatActivity implements SearchContract.ISearchView {
     @BindView(R.id.queryField)
     EditText mQueryField;
     @BindView(R.id.wordList)
     RecyclerView mRecyclerView;
-    @BindView(R.id.holder)
-    TextView mHolder;
+    @BindView(R.id.clear)
+    ImageView clear;
+    @BindView(R.id.view)
+    View v;
 
-    private SearchContract.Presenter mPresenter;
+    private SearchContract.ISearchPresenter mSearchPresenter;
     private WordAdapter adapter;
-    private List<Word> words;
-    private Handler handler;
+
+    public static void display(Activity activity, View title, View input) {
+        Intent intent = new Intent(activity, SearchActivity.class);
+        Pair<View, String> p1 = Pair.create(title, "title");
+        Pair<View, String> p2 = Pair.create(input, "input");
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, p1, p2);
+        activity.startActivity(intent, options.toBundle());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        if (getResources().getBoolean(R.bool.portrait_only)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+        super.setTheme(HelperPreferences.isWhiteTheme(this) ? R.style.AppThemeWhite : R.style.AppThemeBlack);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
-        mPresenter = new SearchPresenter(this);
-        handler = new Handler();
+        v.setBackgroundColor(HelperPreferences.isWhiteTheme(this) ? Color.BLACK : Color.WHITE);
+        mQueryField.setTextColor(HelperPreferences.isWhiteTheme(this) ? Color.BLACK : Color.WHITE);
+        mSearchPresenter = new SearchPresenter();
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        words = new ArrayList<>();
-        adapter = new WordAdapter(words);
+        adapter = new WordAdapter(this, new ArrayList<>());
         mRecyclerView.setLayoutManager(llm);
         mRecyclerView.setAdapter(adapter);
         mQueryField.addTextChangedListener(new TextWatcher() {
@@ -61,27 +81,28 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length() > 0) {
-                    handler.removeCallbacksAndMessages(null);
-                    handler.postDelayed(() -> mPresenter.searchExpression(s.toString()), 300);
-                } else showNoWords();
+                mSearchPresenter.checkEnteredSymbols(s);
             }
         });
+        clear.setOnClickListener(v -> supportFinishAfterTransition());
     }
 
     @Override
-    public void setPresenter(SearchContract.Presenter presenter) {
-        mPresenter = checkNotNull(presenter);
+    protected void onStart() {
+        super.onStart();
+        mSearchPresenter.attachView(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSearchPresenter.detachView();
     }
 
     @Override
     public void showWords(List<Word> words) {
         if (checkNotNull(words).size() > 0) {
-            this.words.clear();
-            this.words.addAll(words);
-            adapter.notifyDataSetChanged();
-            if (mHolder.getVisibility() == View.VISIBLE)
-                mHolder.setVisibility(View.GONE);
+            adapter.changeWords(words);
         } else {
             showNoWords();
         }
@@ -89,9 +110,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 
     @Override
     public void showNoWords() {
-        words.clear();
-        adapter.notifyDataSetChanged();
-        mHolder.setVisibility(View.VISIBLE);
+        adapter.clearList();
     }
 
     @Override

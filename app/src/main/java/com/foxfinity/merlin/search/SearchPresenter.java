@@ -1,8 +1,9 @@
 package com.foxfinity.merlin.search;
 
-import android.support.annotation.NonNull;
-import android.util.Log;
+import android.os.Handler;
+import android.text.Editable;
 
+import com.foxfinity.merlin.base.Presenter;
 import com.foxfinity.merlin.models.Word;
 import com.foxfinity.merlin.network.Api;
 
@@ -12,24 +13,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
-
 
 /**
  * Project Merlin. Created by Izya Pitersky on 3/18/17.
  */
 
-public class SearchPresenter implements SearchContract.Presenter {
-    private final SearchContract.View mSearchView;
+public class SearchPresenter extends Presenter<SearchContract.ISearchView> implements SearchContract.ISearchPresenter {
+    private Handler handler;
 
-    public SearchPresenter(@NonNull SearchContract.View searchView) {
-        mSearchView = checkNotNull(searchView);
-        mSearchView.setPresenter(this);
-    }
-
-    @Override
-    public void start() {
-
+    SearchPresenter() {
+        handler = new Handler();
     }
 
     @Override
@@ -38,16 +31,34 @@ public class SearchPresenter implements SearchContract.Presenter {
             @Override
             public void onResponse(Call<List<Word>> call, Response<List<Word>> response) {
                 if (response.isSuccessful()) {
-                    mSearchView.showWords(response.body());
+                    getView().showWords(response.body());
                 } else {
-                    mSearchView.showNoWords();
+                    getView().showNoWords();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Word>> call, Throwable t) {
-                mSearchView.showNetworkProblemToast();
+                getView().showNetworkProblemToast();
             }
         });
+    }
+
+    @Override
+    public void checkEnteredSymbols(Editable s) {
+        if (s.length() > 0) {
+            handler.removeCallbacksAndMessages(null);
+            handler.postDelayed(() -> searchExpression(s.toString()), 300);
+        } else getView().showNoWords();
+    }
+
+    @Override
+    protected void onViewAttached() {
+
+    }
+
+    @Override
+    protected void onViewDetached() {
+
     }
 }

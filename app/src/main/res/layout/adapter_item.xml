@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.foxfinity.merlin.views.MerlinTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/word"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/word"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp" />
-
-</RelativeLayout>
+    android:layout_height="wrap_content"
+    android:maxLines="1"
+    android:padding="5sp"
+    android:text="Bluebird"
+    android:background="?android:attr/selectableItemBackground"
+    android:textSize="18sp" />

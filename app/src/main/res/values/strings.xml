@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Merlin</string>
+    <string name="description"><![CDATA[
+<p><b><font color="#3F51B5">«ml:bluebird»</font></b>	        Find words with a meaning similar to <i>bluebird</i>
+<p><b><font color="#3F51B5">«ml:duck:b*»</font></b>	        Find words related to <i>duck</i> that start with the letter <i>b</i>
+<p><b><font color="#3F51B5">«ml:spoon:*a»</font></b>	        Find words related to <i>spoon</i> that end with the letter <i>a</i>
+<p><b><font color="#3F51B5">«sl:elefint»</font></b>         Find words that sound like <i>elefint</i>
+<p><b><font color="#3F51B5">«t??k»</font></b>	        Find words that start with <i>t</i>, end in <i>k</i>, and have two letters in between
+<p><b><font color="#3F51B5">«coneticut»</font></b>	words that are spelled similarly to <i>coneticut</i>
+<p><b><font color="#3F51B5">«rhy:forgetful»</font></b>	Find words that rhyme with <i>forgetful</i>
+<p><b><font color="#3F51B5">«rhy:grape:breakfast»</font></b>	Find words that rhyme with <i>grape</i> that are related to <i>breakfast</i>
+<p><b><font color="#3F51B5">«jjb:ocean»</font></b>	Find adjectives that are often used to describe <i>ocean</i>
+<p><b><font color="#3F51B5">«jjb:ocean:temperature»</font></b>	Find adjectives describing <i>ocean</i> sorted by how related they are to <i>temperature</i>
+<p><b><font color="#3F51B5">«jja:yellow»</font></b>	Find nouns that are often described by the adjective <i>yellow</i>
+<p><b><font color="#3F51B5">«jja:yellow:temperature»</font></b>	Find nouns that are often described by the adjective <i>yellow sorted by how related they are to <i>temperature</i>
+<p><b><font color="#3F51B5">«lc:drink:w*»</font></b>	Find words that often follow <i>drink</i> in a sentence, that start with the letter <i>w</i>
+<p><b><font color="#3F51B5">«sug:rawand»</font></b>	Find suggestions if they have typed in <i>rawand</i> so far]]></string>
+    <string name="about">This application will help you find words matching your query and find out their definitions\n\nApp made by Heavy Sea, 2016. All rights reserved.</string>
 </resources>

@@ -15,6 +15,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Api {
     private static MerlinService sService;
+    private static DefinitionsService definitionsService;
 
     private static String DATAMUSE_URL = "http://api.datamuse.com";
 
@@ -39,6 +40,17 @@ public class Api {
                 .build();
 
         sService = sRetrofit.create(MerlinService.class);
+
+        sRetrofit = new Retrofit.Builder()
+                .baseUrl("https://wordsapiv1.p.mashape.com")
+                .addConverterFactory(GsonConverterFactory.create(sGson))
+                .client(okHttpClient)
+                .build();
+        definitionsService = sRetrofit.create(DefinitionsService.class);
+    }
+
+    public static DefinitionsService getDefinitionsService() {
+        return definitionsService;
     }
 
     public static MerlinService getService() {

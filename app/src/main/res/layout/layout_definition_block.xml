@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Article"
+        android:textColor="#adadad" />
+
+    <com.foxfinity.merlin.views.MerlinTextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:text="1. article"
+        android:textSize="18sp" />
+</RelativeLayout>
